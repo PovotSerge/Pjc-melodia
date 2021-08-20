@@ -3,6 +3,9 @@ $(document).ready(function () {
   var floorPath = $(".home-image path");
   var counterUp = $(".counter-up");
   var counterDown = $(".counter-down");
+  var modal = $(".modal");
+  var modalCloseButton = $('.modal-close-button');
+  var viewFlatsButton = $(".view-flats");
 
   // функция при навидении мышки на этаж
   floorPath.on('mouseover', function() {
@@ -10,6 +13,10 @@ $(document).ready(function () {
     currentFloor = $(this).attr("data-floor");
     $(".counter").text(currentFloor);
   });
+
+  floorPath.on('click', toggleModal);
+  modalCloseButton.on('click', toggleModal);
+  viewFlatsButton.on('click', toggleModal);
 
      counterUp.on("click", function(){
      if (currentFloor < 18) {
@@ -30,5 +37,8 @@ $(document).ready(function () {
        $(`[data-floor=${usCurrentFloor}]`).toggleClass("current-floor");
     }
   });
+  function toggleModal() {
+    modal.toggleClass("is-open");
+  }
 });
 
